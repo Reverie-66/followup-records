@@ -1,0 +1,33 @@
+{
+  "pages": [
+    {
+      "path": "pages/list/list",
+      "style": {
+        "navigationBarTitleText": "跟进详情",
+        "enablePullDownRefresh": true,
+        "navigationBarBackgroundColor": "#7A6F9B",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/form/form",
+      "style": {
+        "navigationBarTitleText": "跟进详情",
+        "navigationBarBackgroundColor": "#7A6F9B",
+        "navigationBarTextStyle": "white"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "跟进详情",
+    "navigationBarBackgroundColor": "#7A6F9B",
+    "backgroundColor": "#F5F3F7"
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  }
+}

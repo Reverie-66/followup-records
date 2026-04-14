@@ -1,0 +1,66 @@
+/* 主题色  */
+$primary-color: #7A6F9B;      // 主色：紫灰，用于按钮、强调
+$primary-light: #A593B0;      // 浅紫灰，用于 hover / 次要元素
+$primary-dark: #5E5270;       // 深紫灰，用于 active 状态
+
+/* 功能色 */
+$success-color: #6B9B7A;      // 莫兰迪绿
+$warning-color: #C9A96E;      // 莫兰迪黄
+$danger-color: #C4817C;       // 莫兰迪粉红（错误提示）
+
+/* 文字颜色 */
+$text-main: #4A4453;          // 深灰紫，主要文字
+$text-secondary: #7A7285;     // 中灰紫，次要文字
+$text-light: #A49DB0;         // 浅灰紫，辅助文字
+
+/* 背景色 */
+$bg-color: #F5F3F7;           // 页面背景：极浅紫灰
+$bg-white: #FFFFFF;           // 卡片背景：纯白（或可用 #FDFCFE）
+$bg-card: #FDFCFE;            // 卡片底色（比纯白柔和一点点）
+
+/* 边框颜色 */
+$border-color: #E6E2EC;       // 极浅紫灰边框
+
+/* 阴影（莫兰迪风格用浅色大阴影） */
+$box-shadow-card: 0 8rpx 24rpx rgba(122, 111, 155, 0.06);
+$box-shadow-btn: 0 6rpx 12rpx rgba(122, 111, 155, 0.15);
+
+/* 间距 */
+$spacing-xs: 10rpx;
+$spacing-sm: 20rpx;
+$spacing-md: 30rpx;
+$spacing-lg: 40rpx;
+$spacing-xl: 50rpx;
+
+/* 圆角 */
+$border-radius-sm: 12rpx;     
+$border-radius-md: 20rpx;
+$border-radius-lg: 28rpx;
+$border-radius-round: 50%;
+
+$uni-color-primary: $primary-color;
+$uni-color-success: $success-color;
+$uni-color-warning: $warning-color;
+$uni-color-error: $danger-color;
+
+$uni-text-color: $text-main;
+$uni-text-color-inverse: #fff;
+$uni-text-color-grey: $text-secondary;
+$uni-text-color-placeholder: #C2BBCB;
+$uni-text-color-disable: #C2BBCB;
+
+$uni-bg-color: $bg-white;
+$uni-bg-color-grey: #F8F6FA;
+$uni-bg-color-hover: #F0EDF3;
+$uni-bg-color-mask: rgba(90, 80, 105, 0.3);
+
+$uni-border-color: $border-color;
+$uni-border-color-dark: #D6D0DE;
+
+$uni-spacing-sm: $spacing-sm;
+$uni-spacing-md: $spacing-md;
+$uni-spacing-lg: $spacing-lg;
+
+$uni-border-radius-sm: $border-radius-sm;
+$uni-border-radius-md: $border-radius-md;
+$uni-border-radius-lg: $border-radius-lg;
