@@ -32,17 +32,18 @@
         />
       </view>
 
-      <!-- 下次沟通时间：使用 uni-datetime-picker 保证跨平台置灰 -->
+      <!-- 下次沟通时间：原生滚动选择器，无日期限制 -->
       <view class="form-group">
         <view class="form-label">下次沟通时间</view>
-        <uni-datetime-picker
-          type="date"
+        <picker
+          mode="date"
           :value="form.nextTime"
-          :start="minDate"
           @change="onDateChange"
-          placeholder="请选择日期"
-          class="datetime-picker"
-        />
+        >
+          <view class="picker-input" :class="{ placeholder: !form.nextTime }">
+            {{ form.nextTime || '请选择日期' }}
+          </view>
+        </picker>
       </view>
 
       <!-- 下次沟通内容 -->
@@ -71,15 +72,8 @@
 import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { saveRecord, getRecordById } from '@/services/recordStorage.js';
-import UniDatetimePicker from '@dcloudio/uni-ui/lib/uni-datetime-picker/uni-datetime-picker.vue';
-import UniIcons from '@dcloudio/uni-ui/lib/uni-icons/uni-icons.vue'; 
-// 计算今天日期作为最小可选日期 (YYYY-MM-DD)
-const today = new Date();
-const year = today.getFullYear();
-const month = String(today.getMonth() + 1).padStart(2, '0');
-const day = String(today.getDate()).padStart(2, '0');
-const minDate = ref(`${year}-${month}-${day}`);
 
+// 不再需要 minDate 限制
 const form = ref({
   id: '',
   subject: '',
@@ -97,9 +91,8 @@ onLoad((options) => {
   }
 });
 
-// uni-datetime-picker 的 change 事件参数不同：返回 { value: 'YYYY-MM-DD' }
 const onDateChange = (e) => {
-  form.value.nextTime = e.value;
+  form.value.nextTime = e.detail.value;
 };
 
 const onSave = () => {
@@ -135,7 +128,7 @@ const onCancel = () => {
 </script>
 
 <style lang="scss" scoped>
-/* 莫兰迪风格表单页 */
+/* 莫兰迪风格表单页 - 样式完全不变 */
 .form-page {
   min-height: 100vh;
   background-color: $bg-color;
@@ -207,43 +200,48 @@ const onCancel = () => {
   }
 }
 
-// 为 uni-datetime-picker 定制样式，使其与整体风格统一
-.datetime-picker {
+.picker-input {
+  position: relative;
   width: 100%;
+  height: 76rpx;
+  line-height: 76rpx;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  padding: 0 $spacing-lg 0 $spacing-md;
+  font-size: 28rpx;
+  background-color: #FCFBFE;
+  display: flex;
+  align-items: center;
+  color: $text-main;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  box-shadow: inset 0 2rpx 4rpx rgba(0, 0, 0, 0.02);
 
-  // 内部输入框样式覆盖（组件内部类名固定）
-  :deep(.uni-date) {
-    height: 76rpx !important;
-    border: 1px solid $border-color !important;
-    border-radius: $border-radius-md !important;
-    background-color: #FCFBFE !important;
-    padding: 0 $spacing-md !important;
-    font-size: 28rpx !important;
-    color: $text-main !important;
-    box-sizing: border-box !important;
-    box-shadow: inset 0 2rpx 4rpx rgba(0, 0, 0, 0.02) !important;
-
-    .uni-date-input {
-      height: 76rpx !important;
-      line-height: 76rpx !important;
-      color: $text-main !important;
-    }
-
-    .uni-date-placeholder {
-      color: $text-light !important;
-    }
-
-    .uni-icons {
-      color: $text-light !important;
-    }
+  &.placeholder {
+    color: $text-light;
   }
 
-  // 聚焦/点击态
-  :deep(.uni-date:active) {
-    border-color: $primary-color !important;
-    background-color: #FFFFFF !important;
-    box-shadow: 0 0 0 4rpx rgba(122, 111, 155, 0.08), inset 0 2rpx 4rpx rgba(0, 0, 0, 0.02) !important;
+  &:active {
+    border-color: $primary-color;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 4rpx rgba(122, 111, 155, 0.08), inset 0 2rpx 4rpx rgba(0, 0, 0, 0.02);
   }
+
+  &::after {
+    content: '▼';
+    position: absolute;
+    right: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-light;
+    font-size: 24rpx;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.placeholder {
+  color: $text-light;
 }
 
 .button-group {
